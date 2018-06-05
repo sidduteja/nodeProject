@@ -3,12 +3,12 @@ var db = require('../dbconnection');
 
 var login = {
     authCheck: function (data, callback) {
-      console.log('data')
+      console.log('data123')
       console.log(data)
-     db.query("Select * from users u  where u.email=? AND u.password = ?",
+     db.query("Select * from users u  where u.first_name=?",
         [
-            data.email,
-            data.password
+            data.first_name,
+            
         ], function(err, rows){
             if(rows.length>0){
                 callback({"response": "data", "success": true, data: rows})
@@ -22,7 +22,7 @@ var login = {
     getAllData: function (data, callback) {
       console.log('data')
       console.log(data)
-     db.query("Select * from users u",
+     db.query("Select DISTINCT city from address_tables",
         [], function(err, rows){
             if(rows.length>0){
                 callback({"response": "data", "success": true, data: rows})
